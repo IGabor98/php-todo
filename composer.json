@@ -1,0 +1,18 @@
+{
+  "require": {
+    "middlewares/fast-route": "^1.0",
+    "middlewares/request-handler": "^1.1",
+    "narrowspark/http-emitter": "^1.0",
+    "php-di/php-di": "^6.2",
+    "relay/relay": "^2.1",
+    "zendframework/zend-diactoros": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Src\\": "src"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
