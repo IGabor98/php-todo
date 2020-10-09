@@ -2,10 +2,11 @@
 
 namespace Src\Repositories;
 
-use Src\Repository\DTO\CreateUserDTO;
+use Src\Models\User;
+use Src\Repositories\DTO\CreateUserDTO;
 
 interface UserRepository
 {
-    public function create(CreateUserDTO $userDTO);
+    public function create(CreateUserDTO $userDTO) : User;
     public function get(int $id);
 }

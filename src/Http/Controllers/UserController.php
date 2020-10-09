@@ -20,17 +20,31 @@ class UserController
         $this->service = $service;
     }
 
+    /**
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     * @throws \Exception
+     */
     public function signUp(ServerRequestInterface $request)
     {
         $body = $request->getBody();
         $params = json_decode($body, true);
         $body->close();
+        $response = $this->response->withHeader('Content-Type', 'application/json');
+        if(!(isset($params['email']) && isset($params['password']))) {
+            return $response->withStatus(422, 'email and password are required fields');
+        }
 
         $signUpDTO = new SignUpDTO($params['email'], $params['password']);
+
         $user = $this->service->signUp($signUpDTO);
-        $response = $this->response->withHeader('Content-Type', 'application/json');
-        $response->getBody()
-            ->write($user);
+
+        $data = [
+        	'email' => $user->getEmail(),
+			'password' => $user->getPassword(),
+		];
+
+        $response->getBody()->write(json_encode($data));
 
         return $response;
     }

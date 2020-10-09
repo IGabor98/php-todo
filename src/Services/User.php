@@ -7,6 +7,6 @@ use Src\Services\DTO\SignUpDTO;
 
 interface User
 {
-    public function signUp(SignUpDTO $signUpDTO);
+    public function signUp(SignUpDTO $signUpDTO) : \Src\Models\User;
     public function signIn(SignInDTO $signInDTO);
 }
